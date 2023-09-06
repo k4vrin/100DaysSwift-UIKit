@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTV-ua-EpP">
-                                <rect key="frame" x="96.666666666666686" y="100" width="200" height="100"/>
+                                <rect key="frame" x="96.666666666666686" y="240" width="200" height="100"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="us">
                                     <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
@@ -28,7 +28,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iuA-gf-Hqj">
-                                <rect key="frame" x="96.666666666666686" y="230" width="200" height="100"/>
+                                <rect key="frame" x="96.666666666666686" y="360" width="200" height="100"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="us">
                                     <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
@@ -38,7 +38,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jfp-jb-kMg">
-                                <rect key="frame" x="96.666666666666686" y="360" width="200" height="100"/>
+                                <rect key="frame" x="96.666666666666686" y="480" width="200" height="100"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="us">
                                     <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
@@ -47,16 +47,29 @@
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NRO-Wb-rmY"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, " textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ETY-w9-z2m">
+                                <rect key="frame" x="96" y="150" width="201" height="56"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="InC-bR-1lp"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="iuA-gf-Hqj" firstAttribute="top" secondItem="GTV-ua-EpP" secondAttribute="bottom" constant="30" id="9Jw-mX-fQb"/>
-                            <constraint firstItem="iuA-gf-Hqj" firstAttribute="centerX" secondItem="GTV-ua-EpP" secondAttribute="centerX" id="DP6-mN-MXx"/>
-                            <constraint firstItem="Jfp-jb-kMg" firstAttribute="centerX" secondItem="iuA-gf-Hqj" secondAttribute="centerX" id="dRi-mB-oNm"/>
-                            <constraint firstItem="GTV-ua-EpP" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="eLE-xj-vkH"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="GTV-ua-EpP" secondAttribute="top" constant="3" id="mJ8-Ww-zzj"/>
-                            <constraint firstItem="Jfp-jb-kMg" firstAttribute="top" secondItem="iuA-gf-Hqj" secondAttribute="bottom" constant="30" id="u8e-ZX-hzL"/>
+                            <constraint firstItem="ETY-w9-z2m" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8UN-hr-WDE"/>
+                            <constraint firstItem="iuA-gf-Hqj" firstAttribute="centerX" secondItem="GTV-ua-EpP" secondAttribute="centerX" id="CeE-DU-sOp"/>
+                            <constraint firstItem="iuA-gf-Hqj" firstAttribute="top" secondItem="GTV-ua-EpP" secondAttribute="bottom" constant="20" id="LFS-wa-j7e"/>
+                            <constraint firstItem="ETY-w9-z2m" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="47" id="Qzt-Vh-FJw"/>
+                            <constraint firstItem="ETY-w9-z2m" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="96" id="Xhz-gE-nyP"/>
+                            <constraint firstItem="ETY-w9-z2m" firstAttribute="centerX" secondItem="GTV-ua-EpP" secondAttribute="centerX" id="lRg-WS-ris"/>
+                            <constraint firstItem="GTV-ua-EpP" firstAttribute="top" secondItem="ETY-w9-z2m" secondAttribute="bottom" constant="34" id="lzR-rG-VFd"/>
+                            <constraint firstItem="Jfp-jb-kMg" firstAttribute="centerX" secondItem="iuA-gf-Hqj" secondAttribute="centerX" id="tPd-QJ-Wl3"/>
+                            <constraint firstItem="Jfp-jb-kMg" firstAttribute="top" secondItem="iuA-gf-Hqj" secondAttribute="bottom" constant="20" id="w0M-tN-vqk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5tx-m9-kkt"/>
@@ -64,11 +77,12 @@
                         <outlet property="button1" destination="GTV-ua-EpP" id="MVz-FP-nbB"/>
                         <outlet property="button2" destination="iuA-gf-Hqj" id="mHu-ho-JLR"/>
                         <outlet property="button3" destination="Jfp-jb-kMg" id="dsv-If-Wx7"/>
+                        <outlet property="scoreTxt" destination="ETY-w9-z2m" id="egi-Ka-otK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1057.2519083969464" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="1052.6717557251909" y="-27.464788732394368"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mXp-0u-QZy">
@@ -91,6 +105,9 @@
     </scenes>
     <resources>
         <image name="us" width="200" height="100"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

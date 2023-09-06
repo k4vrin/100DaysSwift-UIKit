@@ -12,10 +12,13 @@ class ViewController: UIViewController {
     @IBOutlet var button1: UIButton!
     @IBOutlet var button2: UIButton!
     @IBOutlet var button3: UIButton!
+    @IBOutlet var scoreTxt: UITextView!
     
+    @IBOutlet var sdasd: UITextView!
     var countries = ["estonia", "france", "germany", "ireland", "italy", "nigeria", "poland", "russia", "spain", "uk", "us"]
     var score = 0
     var correctAnswer = 0
+    var questionsAsked = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +30,7 @@ class ViewController: UIViewController {
         button1.layer.borderColor = UIColor.lightGray.cgColor
         button2.layer.borderColor = UIColor.lightGray.cgColor
         button3.layer.borderColor = UIColor.lightGray.cgColor
-        
+        scoreTxt.text = "Score: \(score)"
         askQuestion()
     }
     
@@ -41,6 +44,7 @@ class ViewController: UIViewController {
         button3.setImage(UIImage(named: countries[2]), for: .normal)
         
         title = countries[correctAnswer].uppercased()
+        questionsAsked += 1
     }
 
     @IBAction func buttonTapped(_ sender: UIButton) {
@@ -52,11 +56,26 @@ class ViewController: UIViewController {
             title = "Wrong"
             score -= 1
         }
+        scoreTxt.text = "Score: \(score)"
         
-        let ac = UIAlertController(title: title, message: "Your score is \(score)", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
-        
-        present(ac, animated: true)
+        if questionsAsked >= 10 {
+            let ac = UIAlertController(title: "Game finnished", message: "Your final score is \(score)", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Restart", style: .default, handler: { action in
+                self.score = 0
+                self.questionsAsked = 0
+                self.scoreTxt.text = "Score: \(self.score)"
+                self.askQuestion()
+                
+            }))
+            
+            present(ac, animated: true)
+        } else {
+            let message = title == "Wrong" ? "Wrong! That's the flag of \(countries[sender.tag].capitalized)" : "Your score is \(score)"
+            let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
+            
+            present(ac, animated: true)
+        }
     }
     
     
