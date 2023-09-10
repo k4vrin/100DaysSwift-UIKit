@@ -1,6 +1,6 @@
 //
 //  DetailViewController.swift
-//  Project1
+//  Project3
 //
 //  Created by Mostafa Hosseini on 9/2/23.
 //
@@ -29,7 +29,12 @@ class DetailViewController: UIViewController {
     }
     
     @objc func shareTapped() {
-        let vc = UIActivityViewController(activityItems: ["Checkout StormViewer"], applicationActivities: [])
+        guard let image = imageView.image?.jpegData(compressionQuality: 0.8) else {
+            print("No image found")
+            return
+        }
+
+        let vc = UIActivityViewController(activityItems: [image, selectedImage ?? "image"], applicationActivities: [])
         vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(vc, animated: true)
     }

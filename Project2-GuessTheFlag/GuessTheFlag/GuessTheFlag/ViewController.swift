@@ -30,8 +30,19 @@ class ViewController: UIViewController {
         button1.layer.borderColor = UIColor.lightGray.cgColor
         button2.layer.borderColor = UIColor.lightGray.cgColor
         button3.layer.borderColor = UIColor.lightGray.cgColor
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .rewind, target: self, action: #selector(rewindTapped))
+        
         scoreTxt.text = "Score: \(score)"
         askQuestion()
+    }
+    
+    @objc func rewindTapped() {
+        let message = "Your score is \(score)"
+        let ac = UIAlertController(title: "Score", message: message, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: {_ in}))
+        
+        present(ac, animated: true)
     }
     
     func askQuestion(action: UIAlertAction! = nil) {
