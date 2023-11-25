@@ -33,6 +33,7 @@ class ViewController: UITableViewController {
     
     private func configBar() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForAnswer))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(startGame))
     }
     
     private func readStartFile() {
@@ -47,7 +48,7 @@ class ViewController: UITableViewController {
         }
     }
     
-    private func startGame() {
+    @objc private func startGame() {
         title = allWords.randomElement()
         usedWords.removeAll(keepingCapacity: true)
         tableView.reloadData()
@@ -65,6 +66,12 @@ class ViewController: UITableViewController {
         present(ac, animated: true)
     }
 
+    private func showErrorMessage(_ answer: String) {
+        usedWords.insert(answer, at: 0)
+        let indexPath = IndexPath(row: 0, section: 0)
+        tableView.insertRows(at: [indexPath], with: .automatic)
+    }
+    
     private func submit(_ answer: String) {
         let lowerAnswer = answer.lowercased()
         let errorTitle: String
@@ -80,10 +87,11 @@ class ViewController: UITableViewController {
         case !isReal(word: lowerAnswer):
             errorTitle = "Word not recognized"
             errorMessage = "You can't just make them up, you know!"
+        case isSame(word: lowerAnswer):
+            errorTitle = "Word is duplicate"
+            errorMessage = "Choose something different than the original word."
         default:
-            usedWords.insert(answer, at: 0)
-            let indexPath = IndexPath(row: 0, section: 0)
-            tableView.insertRows(at: [indexPath], with: .automatic)
+            showErrorMessage(lowerAnswer)
             return
         }
         
@@ -113,6 +121,10 @@ class ViewController: UITableViewController {
         let chekcer = UITextChecker()
         let range = NSRange(location: 0, length: word.utf16.count)
         let misspelledRange = chekcer.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
-        return misspelledRange.location == NSNotFound
+        return misspelledRange.location == NSNotFound && word.count >= 3
+    }
+    
+    private func isSame(word: String) -> Bool {
+        return  title == word
     }
 }
