@@ -15,12 +15,20 @@ class ViewController: UITableViewController {
         // Do any additional setup after loading the view.
         
 //        let urlString = "https://api.whitehouse.gov/v1/petitions.json?limit=100"
-        let urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
+        let urlString: String
+        if navigationController?.tabBarItem.tag == 0 {
+            urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
+        } else {
+            urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
+        }
+        
+        
         if let url = URL(string: urlString) {
             URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
                 if let error = error {
                     // handle error
                     print("Error fetching data: \(error)")
+                    self?.showError()
                 } else if let data = data {
                     DispatchQueue.main.async {
                         self?.parse(json: data)
@@ -28,7 +36,15 @@ class ViewController: UITableViewController {
                 }
                 
             }.resume()
+        } else {
+            showError()
         }
+    }
+    
+    func showError() {
+        let ac = UIAlertController(title: "Loading error", message: "There was a problem loading the feed; please check your connection and try", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
     }
     
     func parse(json: Data) {
@@ -48,8 +64,16 @@ class ViewController: UITableViewController {
         var config = UIListContentConfiguration.cell()
         config.text = petitions[indexPath.row].title
         config.secondaryText = petitions[indexPath.row].body
+        config.textProperties.numberOfLines = 1
+        config.secondaryTextProperties.numberOfLines = 1
           
         cell.contentConfiguration = config
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = DetailViewController()
+        vc.detailItem = petitions[indexPath.row]
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
