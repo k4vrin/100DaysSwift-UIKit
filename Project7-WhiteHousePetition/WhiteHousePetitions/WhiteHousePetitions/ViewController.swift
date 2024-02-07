@@ -10,13 +10,14 @@ import UIKit
 class ViewController: UITableViewController {
     var petitions = [Petition]()
     var filteredPetitions: [Petition] {
-        petitions.filter { petition in
-            return if filterText == "" {
-                true
-            } else {
-                petition.title.lowercased().contains(filterText.lowercased())
+        DispatchQueue.global().asyncAndWait {
+            petitions.filter { petition in
+                return if filterText == "" {
+                    true
+                } else {
+                    petition.title.lowercased().contains(filterText.lowercased())
+                }
             }
-            
         }
     }
     var filterText = ""
